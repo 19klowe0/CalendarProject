@@ -44,7 +44,7 @@ namespace CalendarProject
                     description = (string)myReader["description"];
                     startTime = (DateTime)myReader["startTime"];
                     endTime = (DateTime)myReader["endTime"];
-                    
+
                     //No boolean type in MySQL, so if the int is 0 store false, else store true.
                     int tempManager = (int)myReader["managerEvent"];
                     if (tempManager == 0)
@@ -92,7 +92,7 @@ namespace CalendarProject
         public static MySqlDataReader retrieveEvents(Employee currentEmployee)
         {
             MySqlDataReader myReader = null;
-
+          
             //connect to MySQL, select all applicable events
             string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -109,8 +109,8 @@ namespace CalendarProject
                     sql = "SELECT * FROM teammmlevent WHERE (userNum = @currEmp OR managerEvent <> 0)";
                     id = currentEmployee.getID();
                 }
-                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
-                if(id!=-1)
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                if (id != -1)
                     cmd.Parameters.AddWithValue("@currEmp", id);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
                 myReader = cmd.ExecuteReader();
@@ -121,8 +121,9 @@ namespace CalendarProject
                 Console.WriteLine(ex.ToString());
             }
             return myReader;
-           
+
         }
+
 
         //delete an event from MySQL - pass null to currentEmployee if manager event
         public static void deleteEvent(string name, Employee currentEmployee)

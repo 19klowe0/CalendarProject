@@ -1,5 +1,4 @@
-﻿
-namespace CalendarProject
+﻿namespace CalendarProject
 {
     partial class Form1
     {
@@ -1352,4 +1351,3 @@ namespace CalendarProject
         private System.Windows.Forms.Label label7;
     }
 }
-

@@ -29,7 +29,7 @@ namespace CalendarProject
 
         }
 
-        
+
         private void deleteEventButton_Click(object sender, EventArgs e)
         {
             //change scene
@@ -47,6 +47,25 @@ namespace CalendarProject
             conn.Close();
             Console.WriteLine("Done.");
 
+        }
+
+        private void deleteManagerEvent_Click(object sender, EventArgs e)
+        {
+            //change scene
+            tableLayoutPanel1.Visible = false;
+            deleteManagerEventTableLayoutPanel.Visible = true;
+            deleteManagerEventListBox.Items.Clear();
+            //run retrieveEvents, add all manager events to listBox
+            MySqlDataReader myReader = Event.retrieveEvents(null); //pass null for current employee because manager event
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            while (myReader.Read())
+                if ((int)myReader["userNum"] == currentEmployee.getID())
+                    deleteManagerEventListBox.Items.Add((string)myReader["eventName"]);
+            myReader.Close();
+            conn.Close();
+            Console.WriteLine("Done.");
         }
 
         private void deleteManagerEvent_Click(object sender, EventArgs e)
@@ -246,7 +265,7 @@ namespace CalendarProject
                 tableLayoutPanel1.Visible = true;
                 label2.Text = "Pin";
             }
-            
+
 
         }
 
@@ -254,7 +273,7 @@ namespace CalendarProject
         {
             //not correct yet just to get to main menu
             tableLayoutPanel2.Visible = false;
-            tableLayoutPanel1.Visible = true; 
+            tableLayoutPanel1.Visible = true;
         }
 
         private void errorButton_Click(object sender, EventArgs e)
@@ -266,7 +285,7 @@ namespace CalendarProject
         private void viewEventSubmitButton_Click(object sender, EventArgs e)
         {
             //submit only works if item is selected
-            if(viewEventListBox.SelectedIndex >= 0)
+            if (viewEventListBox.SelectedIndex >= 0)
             {
                 //change scene
                 viewEventTableLayoutPanel.Visible = false;
