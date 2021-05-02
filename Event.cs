@@ -92,7 +92,7 @@ namespace CalendarProject
         public static MySqlDataReader retrieveEvents(Employee currentEmployee)
         {
             MySqlDataReader myReader = null;
-
+          
             //connect to MySQL, select all applicable events
             string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -123,6 +123,7 @@ namespace CalendarProject
             return myReader;
 
         }
+
 
         //delete an event from MySQL - pass null to currentEmployee if manager event
         public static void deleteEvent(string name, Employee currentEmployee)
