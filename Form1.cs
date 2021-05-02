@@ -29,51 +29,69 @@ namespace CalendarProject
 
         }
 
-        
+
         private void deleteEventButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void viewEventButton_Click(object sender, EventArgs e)
-        {
+            //change scene
             tableLayoutPanel1.Visible = false;
-            viewEventTableLayoutPanel.Visible = true;
-
-            //Fill viewEventListBox
-            viewEventListBox.Items.Clear();
+            deleteEventTableLayoutPanel.Visible = true;
+            deleteEventListBox.Items.Clear();
+            //run retrieveEvents, add all events to listBox
+            MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
             string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
             MySqlConnection conn = new MySqlConnection(connStr);
-            try
-            {
-                Console.WriteLine("Connecting to MySQL...");
-                conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @currEmp";
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@currEmp", currentEmployee.getID());
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
-                MySqlDataReader myReader = cmd.ExecuteReader();
-               
-                while (myReader.Read())
-                {
-                    Boolean tempMan = true;
-                    if ((int)myReader["managerEvent"] == 0)
-                        tempMan = false;
-                    var eTemp = new Event((int)myReader["eventNum"], (string)myReader["eventName"], (string)myReader["description"], (DateTime)myReader["startTime"], (DateTime)myReader["endTime"], tempMan);
-                    viewEventListBox.Items.Add(eTemp.getEventName());
-                }
-                myReader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            conn.Open();
+            while (myReader.Read())
+                deleteEventListBox.Items.Add((string)myReader["eventName"]);
+            myReader.Close();
             conn.Close();
             Console.WriteLine("Done.");
 
         }
 
+        private void deleteManagerEvent_Click(object sender, EventArgs e)
+        {
+            //change scene
+            tableLayoutPanel1.Visible = false;
+            deleteManagerEventTableLayoutPanel.Visible = true;
+            deleteManagerEventListBox.Items.Clear();
+            //run retrieveEvents, add all manager events to listBox
+            MySqlDataReader myReader = Event.retrieveEvents(null); //pass null for current employee because manager event
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            while (myReader.Read())
+                deleteManagerEventListBox.Items.Add((string)myReader["eventName"]);
+            myReader.Close();
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
+        private void viewEventButton_Click(object sender, EventArgs e)
+        {
+            //change scene
+            tableLayoutPanel1.Visible = false;
+            viewEventTableLayoutPanel.Visible = true;
+            viewEventListBox.Items.Clear();
+
+            //run retrieveEvents, add all events to listBox
+            MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            while (myReader.Read())
+                viewEventListBox.Items.Add((string)myReader["eventName"]);
+            myReader.Close();
+            conn.Close();
+            Console.WriteLine("Done.");
+        }
+
         private void addEventButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addManagerEvent_Click(object sender, EventArgs e)
         {
 
         }
@@ -228,7 +246,7 @@ namespace CalendarProject
                 tableLayoutPanel1.Visible = true;
                 label2.Text = "Pin";
             }
-            
+
 
         }
 
@@ -236,7 +254,7 @@ namespace CalendarProject
         {
             //not correct yet just to get to main menu
             tableLayoutPanel2.Visible = false;
-            tableLayoutPanel1.Visible = true; 
+            tableLayoutPanel1.Visible = true;
         }
 
         private void errorButton_Click(object sender, EventArgs e)
@@ -248,55 +266,118 @@ namespace CalendarProject
         private void viewEventSubmitButton_Click(object sender, EventArgs e)
         {
             //submit only works if item is selected
-            if(viewEventListBox.SelectedIndex >= 0)
+            if (viewEventListBox.SelectedIndex >= 0)
             {
+                //change scene
                 viewEventTableLayoutPanel.Visible = false;
                 viewEvent2TableLayoutPanel.Visible = true;
-                String name = (string)viewEventListBox.SelectedItem;
-
-                string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
-                MySqlConnection conn = new MySqlConnection(connStr);
-                try
+                //run retrieveEvents, get name, description, start and end time of selected event
+                MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
+                while (myReader.Read())
                 {
-                    Console.WriteLine("Connecting to MySQL...");
-                    conn.Open();
-                    string sql = "SELECT * FROM teammmlevent where eventName=@name";
-                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@name", name);
-                    MySqlDataReader myReader = cmd.ExecuteReader();
-                    if(myReader.Read())
+                    if ((string)myReader["eventName"] == (string)viewEventListBox.SelectedItem)
                     {
-                        viewEventLabelName.Text = "Event name: "+name;
+                        viewEventLabelName.Text = "Event name: " + (string)myReader["eventName"];
                         viewEventLabelDesc.Text = "Description: " + (string)myReader["description"];
                         viewEventLabelStart.Text = "Start time: " + myReader["startTime"].ToString();
                         viewEventLabelEnd.Text = "End time: " + myReader["endTime"].ToString();
                     }
-                    myReader.Close();
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                }
-                conn.Close();
-                Console.WriteLine("Done.");
+                myReader.Close();
             }
         }
 
         private void viewEventBackButton_Click(object sender, EventArgs e)
         {
+            //return to menu from page 1
             viewEventTableLayoutPanel.Visible = false;
             tableLayoutPanel1.Visible = true;
         }
 
         private void viewAnotherEventButton_Click(object sender, EventArgs e)
         {
+            //restart viewEvent
             viewEvent2TableLayoutPanel.Visible = false;
             viewEventTableLayoutPanel.Visible = true;
+            viewEventListBox.SelectedIndex = -1;
         }
 
         private void viewEventReturnMenuButton_Click(object sender, EventArgs e)
         {
+            //return to menu from end page
             viewEvent2TableLayoutPanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+
+        private void deleteEventBackButton_Click(object sender, EventArgs e)
+        {
+            //return to menu from page 1
+            deleteEventTableLayoutPanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+
+        private void deleteEventSubmitButton_Click(object sender, EventArgs e)
+        {
+            //submit only works if item is selected
+            if (deleteEventListBox.SelectedIndex >= 0)
+            {
+                //run deleteEvent with selected event
+                string name = (string)deleteEventListBox.SelectedItem;
+                Event.deleteEvent(name, currentEmployee);
+                //change scene
+                deleteEventTableLayoutPanel.Visible = false;
+                deleteEvent2TableLayoutPanel.Visible = true;
+            }
+        }
+
+        private void deleteEventReturnMenuButton_Click(object sender, EventArgs e)
+        {
+            //return to menu from end page
+            deleteEvent2TableLayoutPanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+
+        private void deleteAnotherEventButton_Click(object sender, EventArgs e)
+        {
+            //restart deleteEvent
+            deleteEvent2TableLayoutPanel.Visible = false;
+            deleteEventTableLayoutPanel.Visible = true;
+            deleteEventListBox.SelectedIndex = -1;
+        }
+
+        private void deleteManagerEventSubmitButton_Click(object sender, EventArgs e)
+        {
+            //submit only works if item is selected
+            if (deleteManagerEventListBox.SelectedIndex >= 0)
+            {
+                //run deleteEvent on selected event
+                string name = (string)deleteManagerEventListBox.SelectedItem;
+                Event.deleteEvent(name, null); //pass null for current employee because manager event
+                //change scene
+                deleteManagerEventTableLayoutPanel.Visible = false;
+                deleteManagerEvent2TableLayoutPanel.Visible = true;
+            }
+        }
+
+        private void deleteManagerEventBackButton_Click(object sender, EventArgs e)
+        {
+            //return to menu from page 1
+            deleteManagerEventTableLayoutPanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+
+        private void deleteAnotherManagerEventButton_Click(object sender, EventArgs e)
+        {
+            //restart deleteManagerEvent
+            deleteManagerEvent2TableLayoutPanel.Visible = false;
+            deleteManagerEventTableLayoutPanel.Visible = true;
+            deleteManagerEventListBox.SelectedIndex = -1;
+        }
+
+        private void deleteManagerEventReturnMenuButton_Click(object sender, EventArgs e)
+        {
+            //return to menu from end
+            deleteManagerEvent2TableLayoutPanel.Visible = false;
             tableLayoutPanel1.Visible = true;
         }
     }
