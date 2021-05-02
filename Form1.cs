@@ -61,7 +61,8 @@ namespace CalendarProject
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
             while (myReader.Read())
-                deleteManagerEventListBox.Items.Add((string)myReader["eventName"]);
+                if ((int)myReader["userNum"] == currentEmployee.getID())
+                    deleteManagerEventListBox.Items.Add((string)myReader["eventName"]);
             myReader.Close();
             conn.Close();
             Console.WriteLine("Done.");
