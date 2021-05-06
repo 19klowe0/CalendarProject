@@ -17,6 +17,8 @@ namespace CalendarProject
     public partial class Form1 : Form
     {
         Employee currentEmployee;
+        Boolean managerAction = false; // Global variable, used to reuse code and objects for diffrent events
+        String changeType = "";
 
         public Form1()
         {
@@ -90,13 +92,17 @@ namespace CalendarProject
 
         private void addEventButton_Click(object sender, EventArgs e)
         {
-
+            managerAction = false;
+            tableLayoutPanel3.Visible = true;
+            tableLayoutPanel1.Visible = false;
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
         }
 
-        private void addManagerEvent_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -381,6 +387,903 @@ namespace CalendarProject
             //return to menu from end
             deleteManagerEvent2TableLayoutPanel.Visible = false;
             tableLayoutPanel1.Visible = true;
+        }
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editEventButton_Click(object sender, EventArgs e)
+        {
+
+            tableLayoutPanel1.Visible = false;
+            tableLayoutPanel12.Visible = true;
+            editListBox.Items.Clear();
+
+            //run retrieveEvents, add all events to listBox
+            MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            while (myReader.Read())
+                editListBox.Items.Add((string)myReader["eventName"]);
+            myReader.Close();
+            conn.Close();
+            Console.WriteLine("Done.");
+
+        }
+
+        private void viewEventListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addManagerEvent_Click(object sender, EventArgs e)
+        {
+            managerAction = false;
+            if (currentEmployee.getManagerID() != 0)
+            {
+                managerAction = true;
+                tableLayoutPanel3.Visible = true;
+                tableLayoutPanel1.Visible = false;
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
+            }
+            else
+            {
+                tableLayoutPanel8.Visible = true;
+                tableLayoutPanel1.Visible = false;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime startTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox1.Text), 00, 00);
+            DateTime endTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox2.Text), 00, 00);
+
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE startTime = @startTime";
+
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                if (myReader.Read())
+                {
+                    Console.WriteLine("overlap error");
+                    tableLayoutPanel3.Visible = false;
+                    tableLayoutPanel6.Visible = true;
+
+                }
+                else
+                {
+                    if (changeType.Equals("starttime"))
+                    {
+                        tableLayoutPanel3.Visible = false;
+                        editEvent3tableLayoutPanel.Visible = true;
+                    }
+                    else
+                    {
+                        tableLayoutPanel7.Visible = true;
+                        tableLayoutPanel3.Visible = false;
+                    }
+                }
+                myReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+
+                tableLayoutPanel3.Visible = false;
+                dateTimeError.Visible = true;
+            }
+            conn.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel3.Visible = true;
+            tableLayoutPanel6.Visible = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Visible = true;
+            tableLayoutPanel7.Visible = false;
+            String addEventName = textBox6.Text;
+            String addEventDes = textBox7.Text;
+            int managerAdd = 0;
+            if (managerAction == true)
+            {
+                managerAdd = 1;// allows use of the same code and gui for adding manager and non manager events.
+            }
+            DateTime startTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox1.Text), 00, 00);
+            DateTime endTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox2.Text), 00, 00);
+
+            if (addEventName.Length >= 1)
+            {
+
+                string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+                MySqlConnection conn = new MySqlConnection(connStr);
+                try
+                {
+                    conn.Open();
+                    int transactionNum = 0;
+                    string sql = "SELECT MAX(eventNum) FROM teammmlevent;";
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    MySqlDataReader myReader = cmd.ExecuteReader();
+                    if (myReader.Read())
+                    {
+                        transactionNum = Int32.Parse(myReader[0].ToString());
+                        Console.WriteLine("eventNum number" + (transactionNum + 1));
+                    }
+                    myReader.Close();
+                    Console.WriteLine("Connecting to MySQL...");
+                    conn.Close();
+
+                    conn.Open();
+                    sql = "INSERT INTO teammmlevent (eventNum, eventName, description, startTime, endTime, managerEvent, userNum)" +
+                        " VALUES (@eNum, @eName, @des, @sTi, @eTi, @MaE, @uNum)";
+
+                    cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@eNum", (transactionNum + 1));// wip
+                    cmd.Parameters.AddWithValue("@eName", addEventName);
+                    cmd.Parameters.AddWithValue("@des", addEventDes);
+                    cmd.Parameters.AddWithValue("@sTi", startTime);
+                    cmd.Parameters.AddWithValue("@eTi", endTime);
+                    cmd.Parameters.AddWithValue("@MaE", managerAdd);
+                    cmd.Parameters.AddWithValue("@uNum", currentEmployee.getID());
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                conn.Close();
+                Console.WriteLine("Done.");
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel3.Visible = true;
+            tableLayoutPanel7.Visible = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Visible = true;
+            tableLayoutPanel8.Visible = false;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Visible = true;
+            tableLayoutPanel3.Visible = false;
+        }
+
+        private void monthlyListButton_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Visible = false;
+            tableLayoutPanel9.Visible = true;
+        }
+
+        private void aug_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 08;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void jan_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 01;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+
+        }
+
+        private void monthlyReturn_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Visible = true;
+            tableLayoutPanel9.Visible = false;
+        }
+
+        private void apr_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 04;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Visible = true;
+            tableLayoutPanel10.Visible = false;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel9.Visible = true;
+            tableLayoutPanel10.Visible = false;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel9.Visible = true;
+            tableLayoutPanel11.Visible = false;
+        }
+
+        private void feb_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 02;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void mar_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 03;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void may_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 05;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void jun_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 06;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void jul_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 07;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void sep_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 09;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void oct_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 10;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void nov_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 11;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void dec_Click(object sender, EventArgs e)
+        {
+            monthlyListBox.Items.Clear();
+            int month = 12;
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                cmd.Parameters.AddWithValue("@month", month);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
+                MySqlDataReader myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    monthlyListBox.Items.Add((string)myReader["eventName"] + ": " + (string)myReader["description"]);
+                    tableLayoutPanel10.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+                myReader.Close();
+                if (monthlyListBox.Items.Count <= 0)
+                {
+                    tableLayoutPanel11.Visible = true;
+                    tableLayoutPanel9.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+
+        //private void viewEventSubmitButton_Click(object sender, EventArgs e)
+        //{
+        //    //submit only works if item is selected
+        //    if (viewEventListBox.SelectedIndex >= 0)
+        //    {
+        //        //change scene
+        //        viewEventTableLayoutPanel.Visible = false;
+        //        viewEvent2TableLayoutPanel.Visible = true;
+        //        //run retrieveEvents, get name, description, start and end time of selected event
+        //        MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
+        //        while (myReader.Read())
+        //        {
+        //            if ((string)myReader["eventName"] == (string)viewEventListBox.SelectedItem)
+        //            {
+        //                viewEventLabelName.Text = "Event name: " + (string)myReader["eventName"];
+        //                viewEventLabelDesc.Text = "Description: " + (string)myReader["description"];
+        //                viewEventLabelStart.Text = "Start time: " + myReader["startTime"].ToString();
+        //                viewEventLabelEnd.Text = "End time: " + myReader["endTime"].ToString();
+        //            }
+        //        }
+        //        myReader.Close();
+        //    }
+        //}
+        private void editSubmitButton_Click(object sender, EventArgs e)
+        {
+            //submit only works if item is selected
+            if (editListBox.SelectedIndex >= 0)
+            {
+                //change scene
+                tableLayoutPanel12.Visible = false;
+                editEvent2TableLayoutPanel.Visible = true;
+                //run retrieveEvents, get name, description, start and end time of selected event
+                MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
+                while (myReader.Read())
+                {
+                    if ((string)myReader["eventName"] == (string)editListBox.SelectedItem)
+                    {
+                        label18.Text = (string)myReader["eventName"];
+                        label19.Text = (string)myReader["description"];
+                        label20.Text = myReader["startTime"].ToString();
+                        label21.Text = myReader["endTime"].ToString();
+                    }
+                }
+                myReader.Close();
+            }
+
+
+        }
+
+        private void editListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+            changeType = "name";
+            changeTypeLabel.Text = "Please enter new name information:";
+            editEvent2TableLayoutPanel.Visible = false;
+            editEvent3tableLayoutPanel.Visible = true;
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+            changeType = "description";
+            changeTypeLabel.Text = "Please enter new description information:";
+            editEvent2TableLayoutPanel.Visible = false;
+            editEvent3tableLayoutPanel.Visible = true;
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+            changeType = "starttime";
+            changeTypeLabel.Text = "Please hit submit";
+            editEvent2TableLayoutPanel.Visible = false;
+            tableLayoutPanel3.Visible = true;
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+            changeType = "starttime";
+            changeTypeLabel.Text = "Please hit submit";
+            editEvent2TableLayoutPanel.Visible = false;
+            tableLayoutPanel3.Visible = true;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            editEvent2TableLayoutPanel.Visible = false;
+            tableLayoutPanel12.Visible = true;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            editEvent2TableLayoutPanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+
+        private void editEvent2TableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void editbuttonSubmit_Click(object sender, EventArgs e)
+        {
+
+            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                if (changeType.Equals("name"))
+                {
+                    string sql = "Update teammmlevent SET eventName=@name WHERE userNum = @id AND description = @des;";
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                    cmd.Parameters.AddWithValue("@des", label19.Text);
+                    cmd.Parameters.AddWithValue("@name", editEventTextBox.Text);
+                    cmd.ExecuteNonQuery();
+                }
+                if (changeType.Equals("description"))
+                {
+                    string sql = "Update teammmlevent SET description=@des WHERE userNum = @id AND eventName = @name;";
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                    cmd.Parameters.AddWithValue("@des", editEventTextBox.Text);
+                    cmd.Parameters.AddWithValue("@name", label18.Text);
+                    cmd.ExecuteNonQuery();
+                }
+                if (changeType.Equals("starttime"))
+                {
+                    DateTime startTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox1.Text), 00, 00);
+                    DateTime endTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox2.Text), 00, 00);
+
+                    string sql = "Update teammmlevent SET startTime=@start, endTime=@end WHERE userNum = @id AND eventName = @name;";
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
+                    cmd.Parameters.AddWithValue("@start", startTime);
+                    cmd.Parameters.AddWithValue("@end", endTime);
+                    cmd.Parameters.AddWithValue("@name", label18.Text);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+            Console.WriteLine(label18.Text);
+            Console.WriteLine(editEventTextBox.Text);
+
+
+
+            #region
+            //int eventNum = -1;
+            //String addEventName = editEventTextBox.Text;
+
+            //string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+            //MySqlConnection conn = new MySqlConnection(connStr);
+            //try
+            //{
+            //    conn.Open();
+            //    string sql = "SELECT * FROM teammmlevent WHERE eventName=@name;";
+            //    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+
+
+            //    cmd.Parameters.AddWithValue("@name", addEventName);
+            //    MySqlDataReader myReader = cmd.ExecuteReader();
+            //    if (myReader.Read())
+            //    {
+            //        eventNum = (int)myReader["eventNum"];
+            //        Console.WriteLine("eventNum number" + eventNum);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //}
+            //conn.Close();
+            //Console.WriteLine("Done.");
+
+
+            //Console.WriteLine("Connecting to MySQL...");
+            //if (changeType.Equals("name"))
+            //{
+
+            //    if (addEventName.Length >= 1)
+            //    {
+            //        try
+            //        {
+            //            Console.WriteLine("Connecting to MySQL...");
+            //            conn.Open();
+            //            string sql = "UPDATE teammmlevent SET eventName=@name WHERE eventNum=@eventID;";
+            //            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+            //            MySqlDataReader myReader = cmd.ExecuteReader();
+            //            cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+
+            //            cmd.Parameters.AddWithValue("@name", addEventName);
+            //            cmd.Parameters.AddWithValue("@eventID", eventNum);
+
+            //            cmd.ExecuteNonQuery();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Console.WriteLine(ex.ToString());
+            //        }
+            //        conn.Close();
+            //        Console.WriteLine("Done.");
+            //    }
+            //}
+            #endregion
+            editEvent3tableLayoutPanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+
+        private void editbuttonReturnToMenu_Click(object sender, EventArgs e)
+        {
+            editEvent3tableLayoutPanel.Visible = false;
+            tableLayoutPanel2.Visible = true;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel3.Visible = true;
+            dateTimeError.Visible = false;
         }
     }
 }
