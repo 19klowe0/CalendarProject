@@ -141,6 +141,26 @@
             this.button4 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.editListBox = new System.Windows.Forms.ListBox();
+            this.editSubmitButton = new System.Windows.Forms.Button();
+            this.editEvent2TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.editEvent3tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.editbuttonReturnToMenu = new System.Windows.Forms.Button();
+            this.changeTypeLabel = new System.Windows.Forms.Label();
+            this.editEventTextBox = new System.Windows.Forms.TextBox();
+            this.editbuttonSubmit = new System.Windows.Forms.Button();
+            this.dateTimeError = new System.Windows.Forms.TableLayoutPanel();
+            this.button12 = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             this.managerTableLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -164,6 +184,10 @@
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.editEvent2TableLayoutPanel.SuspendLayout();
+            this.editEvent3tableLayoutPanel.SuspendLayout();
+            this.dateTimeError.SuspendLayout();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -1683,7 +1707,7 @@
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.button6, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(9, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(15, -4);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
@@ -1791,7 +1815,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.81459F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.18541F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 281F));
             this.tableLayoutPanel5.Controls.Add(this.textBox3, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox4, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox5, 0, 0);
@@ -1811,7 +1835,7 @@
             this.textBox3.Location = new System.Drawing.Point(279, 4);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(376, 22);
+            this.textBox3.Size = new System.Drawing.Size(375, 22);
             this.textBox3.TabIndex = 0;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1820,10 +1844,10 @@
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(663, 4);
+            this.textBox4.Location = new System.Drawing.Point(662, 4);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(273, 22);
+            this.textBox4.Size = new System.Drawing.Size(274, 22);
             this.textBox4.TabIndex = 1;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -2074,6 +2098,343 @@
             this.textBox7.TabIndex = 5;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Controls.Add(this.label17, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.editListBox, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.editSubmitButton, 0, 2);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(11, 16);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 3;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(952, 458);
+            this.tableLayoutPanel12.TabIndex = 22;
+            this.tableLayoutPanel12.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(3, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(946, 91);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Select the Event You Wish to Edit";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // editListBox
+            // 
+            this.editListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editListBox.FormattingEnabled = true;
+            this.editListBox.ItemHeight = 91;
+            this.editListBox.Location = new System.Drawing.Point(3, 94);
+            this.editListBox.Name = "editListBox";
+            this.editListBox.Size = new System.Drawing.Size(946, 186);
+            this.editListBox.TabIndex = 1;
+            this.editListBox.SelectedIndexChanged += new System.EventHandler(this.editListBox_SelectedIndexChanged);
+            // 
+            // editSubmitButton
+            // 
+            this.editSubmitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editSubmitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.editSubmitButton.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.editSubmitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editSubmitButton.Location = new System.Drawing.Point(3, 368);
+            this.editSubmitButton.Name = "editSubmitButton";
+            this.editSubmitButton.Size = new System.Drawing.Size(946, 87);
+            this.editSubmitButton.TabIndex = 2;
+            this.editSubmitButton.Text = "Submit";
+            this.editSubmitButton.UseVisualStyleBackColor = false;
+            this.editSubmitButton.Click += new System.EventHandler(this.editSubmitButton_Click);
+            // 
+            // editEvent2TableLayoutPanel
+            // 
+            this.editEvent2TableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEvent2TableLayoutPanel.BackColor = System.Drawing.Color.Beige;
+            this.editEvent2TableLayoutPanel.ColumnCount = 2;
+            this.editEvent2TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editEvent2TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editEvent2TableLayoutPanel.Controls.Add(this.label18, 0, 1);
+            this.editEvent2TableLayoutPanel.Controls.Add(this.button10, 0, 5);
+            this.editEvent2TableLayoutPanel.Controls.Add(this.button11, 1, 5);
+            this.editEvent2TableLayoutPanel.Controls.Add(this.label19, 0, 2);
+            this.editEvent2TableLayoutPanel.Controls.Add(this.label20, 0, 3);
+            this.editEvent2TableLayoutPanel.Controls.Add(this.label21, 0, 4);
+            this.editEvent2TableLayoutPanel.Controls.Add(this.label22, 0, 0);
+            this.editEvent2TableLayoutPanel.Location = new System.Drawing.Point(9, 11);
+            this.editEvent2TableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.editEvent2TableLayoutPanel.Name = "editEvent2TableLayoutPanel";
+            this.editEvent2TableLayoutPanel.RowCount = 6;
+            this.editEvent2TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.editEvent2TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.editEvent2TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.editEvent2TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.editEvent2TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.editEvent2TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.editEvent2TableLayoutPanel.Size = new System.Drawing.Size(949, 518);
+            this.editEvent2TableLayoutPanel.TabIndex = 23;
+            this.editEvent2TableLayoutPanel.Visible = false;
+            this.editEvent2TableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.editEvent2TableLayoutPanel_Paint);
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEvent2TableLayoutPanel.SetColumnSpan(this.label18, 2);
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label18.Location = new System.Drawing.Point(4, 51);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(941, 93);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "Name";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label18.Click += new System.EventHandler(this.label18_Click);
+            // 
+            // button10
+            // 
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.AutoSize = true;
+            this.button10.BackColor = System.Drawing.Color.Turquoise;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.button10.Location = new System.Drawing.Point(4, 427);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(466, 87);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "View another event";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button11.AutoSize = true;
+            this.button11.BackColor = System.Drawing.Color.Turquoise;
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.button11.Location = new System.Drawing.Point(478, 427);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(467, 87);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "Return to menu";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEvent2TableLayoutPanel.SetColumnSpan(this.label19, 2);
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label19.Location = new System.Drawing.Point(4, 144);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(941, 93);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "Description";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label19.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEvent2TableLayoutPanel.SetColumnSpan(this.label20, 2);
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label20.Location = new System.Drawing.Point(4, 237);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(941, 93);
+            this.label20.TabIndex = 5;
+            this.label20.Text = "End Time";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label20.Click += new System.EventHandler(this.label20_Click);
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEvent2TableLayoutPanel.SetColumnSpan(this.label21, 2);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label21.Location = new System.Drawing.Point(4, 330);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(941, 93);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "Start Time";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label21.Click += new System.EventHandler(this.label21_Click);
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label22.Location = new System.Drawing.Point(3, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(468, 51);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Select the Item you Want to Edit:";
+            // 
+            // editEvent3tableLayoutPanel
+            // 
+            this.editEvent3tableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEvent3tableLayoutPanel.ColumnCount = 2;
+            this.editEvent3tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editEvent3tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editEvent3tableLayoutPanel.Controls.Add(this.editbuttonReturnToMenu, 1, 1);
+            this.editEvent3tableLayoutPanel.Controls.Add(this.changeTypeLabel, 0, 0);
+            this.editEvent3tableLayoutPanel.Controls.Add(this.editEventTextBox, 1, 0);
+            this.editEvent3tableLayoutPanel.Controls.Add(this.editbuttonSubmit, 0, 1);
+            this.editEvent3tableLayoutPanel.Location = new System.Drawing.Point(14, 5);
+            this.editEvent3tableLayoutPanel.Name = "editEvent3tableLayoutPanel";
+            this.editEvent3tableLayoutPanel.RowCount = 2;
+            this.editEvent3tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editEvent3tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editEvent3tableLayoutPanel.Size = new System.Drawing.Size(939, 469);
+            this.editEvent3tableLayoutPanel.TabIndex = 24;
+            this.editEvent3tableLayoutPanel.Visible = false;
+            // 
+            // editbuttonReturnToMenu
+            // 
+            this.editbuttonReturnToMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editbuttonReturnToMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.editbuttonReturnToMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.editbuttonReturnToMenu.Location = new System.Drawing.Point(472, 237);
+            this.editbuttonReturnToMenu.Name = "editbuttonReturnToMenu";
+            this.editbuttonReturnToMenu.Size = new System.Drawing.Size(464, 229);
+            this.editbuttonReturnToMenu.TabIndex = 3;
+            this.editbuttonReturnToMenu.Text = "Return To Menu";
+            this.editbuttonReturnToMenu.UseVisualStyleBackColor = false;
+            this.editbuttonReturnToMenu.Click += new System.EventHandler(this.editbuttonReturnToMenu_Click);
+            // 
+            // changeTypeLabel
+            // 
+            this.changeTypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.changeTypeLabel.AutoSize = true;
+            this.changeTypeLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.changeTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.changeTypeLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.changeTypeLabel.Location = new System.Drawing.Point(3, 0);
+            this.changeTypeLabel.Name = "changeTypeLabel";
+            this.changeTypeLabel.Size = new System.Drawing.Size(463, 234);
+            this.changeTypeLabel.TabIndex = 0;
+            this.changeTypeLabel.Text = "changeTypeLabel";
+            this.changeTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // editEventTextBox
+            // 
+            this.editEventTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editEventTextBox.BackColor = System.Drawing.Color.White;
+            this.editEventTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.editEventTextBox.Location = new System.Drawing.Point(472, 3);
+            this.editEventTextBox.Name = "editEventTextBox";
+            this.editEventTextBox.Size = new System.Drawing.Size(464, 45);
+            this.editEventTextBox.TabIndex = 1;
+            // 
+            // editbuttonSubmit
+            // 
+            this.editbuttonSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editbuttonSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.editbuttonSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.editbuttonSubmit.Location = new System.Drawing.Point(3, 237);
+            this.editbuttonSubmit.Name = "editbuttonSubmit";
+            this.editbuttonSubmit.Size = new System.Drawing.Size(463, 229);
+            this.editbuttonSubmit.TabIndex = 2;
+            this.editbuttonSubmit.Text = "Submit";
+            this.editbuttonSubmit.UseVisualStyleBackColor = false;
+            this.editbuttonSubmit.Click += new System.EventHandler(this.editbuttonSubmit_Click);
+            // 
+            // dateTimeError
+            // 
+            this.dateTimeError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimeError.BackColor = System.Drawing.Color.Crimson;
+            this.dateTimeError.ColumnCount = 1;
+            this.dateTimeError.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dateTimeError.Controls.Add(this.button12, 0, 1);
+            this.dateTimeError.Controls.Add(this.label23, 0, 0);
+            this.dateTimeError.Location = new System.Drawing.Point(1, 0);
+            this.dateTimeError.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimeError.Name = "dateTimeError";
+            this.dateTimeError.RowCount = 2;
+            this.dateTimeError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dateTimeError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dateTimeError.Size = new System.Drawing.Size(965, 540);
+            this.dateTimeError.TabIndex = 25;
+            this.dateTimeError.Visible = false;
+            // 
+            // button12
+            // 
+            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.Location = new System.Drawing.Point(4, 274);
+            this.button12.Margin = new System.Windows.Forms.Padding(4);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(957, 262);
+            this.button12.TabIndex = 0;
+            this.button12.Text = "Okay";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(4, 0);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(957, 270);
+            this.label23.TabIndex = 1;
+            this.label23.Text = "Invalid date or Time";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2081,22 +2442,26 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(967, 540);
             this.ControlBox = false;
+            this.Controls.Add(this.tableLayoutPanel7);
+            this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel8);
             this.Controls.Add(this.tableLayoutPanel11);
-            this.Controls.Add(this.tableLayoutPanel6);
+            this.Controls.Add(this.editEvent2TableLayoutPanel);
+            this.Controls.Add(this.tableLayoutPanel12);
+            this.Controls.Add(this.viewEventTableLayoutPanel);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.tableLayoutPanel7);
-            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel10);
             this.Controls.Add(this.deleteManagerEvent2TableLayoutPanel);
             this.Controls.Add(this.deleteEvent2TableLayoutPanel);
             this.Controls.Add(this.deleteManagerEventTableLayoutPanel);
             this.Controls.Add(this.deleteEventTableLayoutPanel);
-            this.Controls.Add(this.viewEvent2TableLayoutPanel);
-            this.Controls.Add(this.viewEventTableLayoutPanel);
             this.Controls.Add(this.errorTableLayoutPanel);
             this.Controls.Add(this.tableLayoutPanel9);
+            this.Controls.Add(this.dateTimeError);
+            this.Controls.Add(this.viewEvent2TableLayoutPanel);
+            this.Controls.Add(this.tableLayoutPanel3);
+            this.Controls.Add(this.editEvent3tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
@@ -2142,6 +2507,14 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
+            this.editEvent2TableLayoutPanel.ResumeLayout(false);
+            this.editEvent2TableLayoutPanel.PerformLayout();
+            this.editEvent3tableLayoutPanel.ResumeLayout(false);
+            this.editEvent3tableLayoutPanel.PerformLayout();
+            this.dateTimeError.ResumeLayout(false);
+            this.dateTimeError.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2262,5 +2635,25 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ListBox editListBox;
+        private System.Windows.Forms.Button editSubmitButton;
+        private System.Windows.Forms.TableLayoutPanel editEvent2TableLayoutPanel;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TableLayoutPanel editEvent3tableLayoutPanel;
+        private System.Windows.Forms.Label changeTypeLabel;
+        private System.Windows.Forms.Button editbuttonReturnToMenu;
+        private System.Windows.Forms.TextBox editEventTextBox;
+        private System.Windows.Forms.Button editbuttonSubmit;
+        private System.Windows.Forms.TableLayoutPanel dateTimeError;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Label label23;
     }
 }
