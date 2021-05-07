@@ -111,7 +111,12 @@ namespace CalendarProject
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            tableLayoutPanel1.Visible = false;
+            currentEmployee = null;
+            tableLayoutPanel2.Visible = true;
+
+
+            //Application.Exit();
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -260,9 +265,7 @@ namespace CalendarProject
 
         private void buttonCancelPin_Click(object sender, EventArgs e)
         {
-            //not correct yet just to get to main menu
-            tableLayoutPanel2.Visible = false;
-            tableLayoutPanel1.Visible = true;
+            Application.Exit();
         }
 
         private void errorButton_Click(object sender, EventArgs e)

@@ -397,12 +397,12 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.PintableLayoutPanelDeleteClear, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.buttonProcessPin, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.logIn67890tableLayoutPanel, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.LogIn12345tableLayoutPanel, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.PintableLayoutPanelDeleteClear, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.buttonCancelPin, 1, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1815,7 +1815,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.81459F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.18541F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 281F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 282F));
             this.tableLayoutPanel5.Controls.Add(this.textBox3, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox4, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox5, 0, 0);
@@ -1835,7 +1835,7 @@
             this.textBox3.Location = new System.Drawing.Point(279, 4);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(375, 22);
+            this.textBox3.Size = new System.Drawing.Size(374, 22);
             this.textBox3.TabIndex = 0;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1844,10 +1844,10 @@
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(662, 4);
+            this.textBox4.Location = new System.Drawing.Point(661, 4);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(274, 22);
+            this.textBox4.Size = new System.Drawing.Size(275, 22);
             this.textBox4.TabIndex = 1;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -2442,6 +2442,8 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(967, 540);
             this.ControlBox = false;
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel7);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel8);
@@ -2449,8 +2451,6 @@
             this.Controls.Add(this.editEvent2TableLayoutPanel);
             this.Controls.Add(this.tableLayoutPanel12);
             this.Controls.Add(this.viewEventTableLayoutPanel);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel10);
             this.Controls.Add(this.deleteManagerEvent2TableLayoutPanel);
             this.Controls.Add(this.deleteEvent2TableLayoutPanel);
