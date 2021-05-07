@@ -111,7 +111,12 @@ namespace CalendarProject
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            tableLayoutPanel1.Visible = false;
+            currentEmployee = null;
+            tableLayoutPanel2.Visible = true;
+
+
+            //Application.Exit();
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -260,9 +265,7 @@ namespace CalendarProject
 
         private void buttonCancelPin_Click(object sender, EventArgs e)
         {
-            //not correct yet just to get to main menu
-            tableLayoutPanel2.Visible = false;
-            tableLayoutPanel1.Visible = true;
+            Application.Exit();
         }
 
         private void errorButton_Click(object sender, EventArgs e)
@@ -461,51 +464,58 @@ namespace CalendarProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime startTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox1.Text), 00, 00);
-            DateTime endTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox2.Text), 00, 00);
+            try// added try 
+            {//
+                DateTime startTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox1.Text), 00, 00);//if dateTime is in invalid format an Exception will be thrown
+                DateTime endTime = new DateTime(int.Parse(textBox4.Text), int.Parse(textBox5.Text), int.Parse(textBox3.Text), int.Parse(textBox2.Text), 00, 00);// will throw for dates such as 02/29 and times such as 25:00:00
+                string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
+                MySqlConnection conn = new MySqlConnection(connStr);
 
-            string connStr = "server=157.89.28.130;user=ChangK;database=csc340;port=3306;password=Wallace#409;";
-            MySqlConnection conn = new MySqlConnection(connStr);
-
-            try
-            {
-                Console.WriteLine("Connecting to MySQL...");
-                conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE startTime = @startTime";
-
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@startTime", startTime);
-                MySqlDataReader myReader = cmd.ExecuteReader();
-                if (myReader.Read())
+                try
                 {
-                    Console.WriteLine("overlap error");
-                    tableLayoutPanel3.Visible = false;
-                    tableLayoutPanel6.Visible = true;
+                    Console.WriteLine("Connecting to MySQL...");
+                    conn.Open();
+                    string sql = "SELECT * FROM teammmlevent WHERE startTime = @startTime";
 
-                }
-                else
-                {
-                    if (changeType.Equals("starttime"))
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@startTime", startTime);
+                    MySqlDataReader myReader = cmd.ExecuteReader();
+                    if (myReader.Read())
                     {
+                        Console.WriteLine("overlap error");
                         tableLayoutPanel3.Visible = false;
-                        editEvent3tableLayoutPanel.Visible = true;
+                        tableLayoutPanel6.Visible = true;
+
                     }
                     else
                     {
-                        tableLayoutPanel7.Visible = true;
-                        tableLayoutPanel3.Visible = false;
+                        if (changeType.Equals("starttime"))
+                        {
+                            tableLayoutPanel3.Visible = false;
+                            editEvent3tableLayoutPanel.Visible = true;
+                        }
+                        else
+                        {
+                            tableLayoutPanel7.Visible = true;
+                            tableLayoutPanel3.Visible = false;
+                        }
                     }
+                    myReader.Close();
                 }
-                myReader.Close();
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+
+                    tableLayoutPanel3.Visible = false;
+                    dateTimeError.Visible = true;
+                }
+                conn.Close();
+            }//
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-
                 tableLayoutPanel3.Visible = false;
                 dateTimeError.Visible = true;
             }
-            conn.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1284,6 +1294,12 @@ namespace CalendarProject
         {
             tableLayoutPanel3.Visible = true;
             dateTimeError.Visible = false;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel12.Visible = false;
+            tableLayoutPanel1.Visible = true;
         }
     }
 }
