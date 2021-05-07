@@ -617,8 +617,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -654,8 +655,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -697,8 +699,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -752,8 +755,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -788,8 +792,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -824,8 +829,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -860,8 +866,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -896,8 +903,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -932,8 +940,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -968,8 +977,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -1004,8 +1014,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -1040,8 +1051,9 @@ namespace CalendarProject
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = "SELECT * FROM teammmlevent WHERE userNum = @id AND MONTH(startTime) = @month;";
+                string sql = "SELECT * FROM teammmlevent WHERE (userNum = @id OR managerEvent = @man)  AND MONTH(startTime) = @month;";
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@man", 1);
                 cmd.Parameters.AddWithValue("@id", currentEmployee.getID());
                 cmd.Parameters.AddWithValue("@month", month);
                 MySqlDataAdapter myAdapter = new MySqlDataAdapter(cmd);
@@ -1067,29 +1079,6 @@ namespace CalendarProject
         }
 
 
-        //private void viewEventSubmitButton_Click(object sender, EventArgs e)
-        //{
-        //    //submit only works if item is selected
-        //    if (viewEventListBox.SelectedIndex >= 0)
-        //    {
-        //        //change scene
-        //        viewEventTableLayoutPanel.Visible = false;
-        //        viewEvent2TableLayoutPanel.Visible = true;
-        //        //run retrieveEvents, get name, description, start and end time of selected event
-        //        MySqlDataReader myReader = Event.retrieveEvents(currentEmployee);
-        //        while (myReader.Read())
-        //        {
-        //            if ((string)myReader["eventName"] == (string)viewEventListBox.SelectedItem)
-        //            {
-        //                viewEventLabelName.Text = "Event name: " + (string)myReader["eventName"];
-        //                viewEventLabelDesc.Text = "Description: " + (string)myReader["description"];
-        //                viewEventLabelStart.Text = "Start time: " + myReader["startTime"].ToString();
-        //                viewEventLabelEnd.Text = "End time: " + myReader["endTime"].ToString();
-        //            }
-        //        }
-        //        myReader.Close();
-        //    }
-        //}
         private void editSubmitButton_Click(object sender, EventArgs e)
         {
             //submit only works if item is selected
