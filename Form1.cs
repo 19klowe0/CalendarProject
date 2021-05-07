@@ -1295,5 +1295,11 @@ namespace CalendarProject
             tableLayoutPanel3.Visible = true;
             dateTimeError.Visible = false;
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel12.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
     }
 }

@@ -161,6 +161,7 @@
             this.dateTimeError = new System.Windows.Forms.TableLayoutPanel();
             this.button12 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
             this.mainMenu.SuspendLayout();
             this.managerTableLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -2104,18 +2105,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.tableLayoutPanel12.ColumnCount = 1;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.ColumnCount = 2;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.72689F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.27311F));
+            this.tableLayoutPanel12.Controls.Add(this.editSubmitButton, 1, 2);
             this.tableLayoutPanel12.Controls.Add(this.label17, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.editListBox, 0, 1);
-            this.tableLayoutPanel12.Controls.Add(this.editSubmitButton, 0, 2);
+            this.tableLayoutPanel12.Controls.Add(this.button13, 0, 2);
             this.tableLayoutPanel12.Location = new System.Drawing.Point(11, 16);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 3;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(952, 458);
             this.tableLayoutPanel12.TabIndex = 22;
             this.tableLayoutPanel12.Visible = false;
@@ -2126,6 +2128,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
+            this.tableLayoutPanel12.SetColumnSpan(this.label17, 2);
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(3, 0);
             this.label17.Name = "label17";
@@ -2139,6 +2142,7 @@
             this.editListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel12.SetColumnSpan(this.editListBox, 2);
             this.editListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editListBox.FormattingEnabled = true;
             this.editListBox.ItemHeight = 91;
@@ -2156,9 +2160,9 @@
             this.editSubmitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.editSubmitButton.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.editSubmitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editSubmitButton.Location = new System.Drawing.Point(3, 368);
+            this.editSubmitButton.Location = new System.Drawing.Point(285, 368);
             this.editSubmitButton.Name = "editSubmitButton";
-            this.editSubmitButton.Size = new System.Drawing.Size(946, 87);
+            this.editSubmitButton.Size = new System.Drawing.Size(664, 87);
             this.editSubmitButton.TabIndex = 2;
             this.editSubmitButton.Text = "Submit";
             this.editSubmitButton.UseVisualStyleBackColor = false;
@@ -2435,6 +2439,21 @@
             this.label23.Text = "Invalid date or Time";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button13
+            // 
+            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.button13.Location = new System.Drawing.Point(3, 368);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(276, 87);
+            this.button13.TabIndex = 3;
+            this.button13.Text = "Return";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2442,14 +2461,15 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(967, 540);
             this.ControlBox = false;
+            this.Controls.Add(this.tableLayoutPanel12);
+            this.Controls.Add(this.editEvent3tableLayoutPanel);
+            this.Controls.Add(this.editEvent2TableLayoutPanel);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel7);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel8);
             this.Controls.Add(this.tableLayoutPanel11);
-            this.Controls.Add(this.editEvent2TableLayoutPanel);
-            this.Controls.Add(this.tableLayoutPanel12);
             this.Controls.Add(this.viewEventTableLayoutPanel);
             this.Controls.Add(this.tableLayoutPanel10);
             this.Controls.Add(this.deleteManagerEvent2TableLayoutPanel);
@@ -2461,7 +2481,6 @@
             this.Controls.Add(this.dateTimeError);
             this.Controls.Add(this.viewEvent2TableLayoutPanel);
             this.Controls.Add(this.tableLayoutPanel3);
-            this.Controls.Add(this.editEvent3tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
@@ -2655,5 +2674,6 @@
         private System.Windows.Forms.TableLayoutPanel dateTimeError;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button button13;
     }
 }
